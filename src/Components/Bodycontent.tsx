@@ -1,8 +1,19 @@
 import React from "react";
-import { Typography, Button, Box, Grid } from "@mui/material";
-import Image from "next/image";
+import {
+  Typography,
+  Button,
+  Box,
+  Grid,
+  useMediaQuery,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
+
+const theme = createTheme();
 
 const MainPage: React.FC = () => {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box
       className="main-page"
@@ -15,17 +26,35 @@ const MainPage: React.FC = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6} color="white">
           <Box textAlign="left" px={4}>
-            <Typography variant="h2" mb={2}>
+            <Typography
+              variant="h2"
+              mb={2}
+              sx={{
+                fontSize: isSmallScreen ? "2rem" : "4rem",
+              }}
+            >
               <strong>
                 NFT
                 <br />
                 MINT PAGE
               </strong>
             </Typography>
-            <Typography variant="h4" mb={2}>
+            <Typography
+              variant="h4"
+              mb={2}
+              sx={{
+                fontSize: isSmallScreen ? "1.5rem" : "3rem",
+              }}
+            >
               BlockChain
             </Typography>
-            <Typography variant="body1" mb={2}>
+            <Typography
+              variant="body1"
+              mb={2}
+              sx={{
+                fontSize: isSmallScreen ? "0.9rem" : "1.2rem",
+              }}
+            >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Consequuntur alias aliquam aliquid maiores praesentium delectus
               aspernatur incidunt. Nam quidem saepe voluptates ut corrupti
@@ -41,12 +70,13 @@ const MainPage: React.FC = () => {
                   color: "white",
                   "&:hover": {
                     background: "#f5f5f5",
-                    color: "black"
+                    color: "black",
                   },
                   "&:focus": {
                     outline: "2px solid #9376E0",
                   },
                   boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: isSmallScreen ? "0.8rem" : "1rem",
                 }}
               >
                 Hire me
@@ -61,12 +91,13 @@ const MainPage: React.FC = () => {
                   color: "white",
                   "&:hover": {
                     background: "#f5f5f5",
-                    color: "black"
+                    color: "black",
                   },
                   "&:focus": {
                     outline: "2px solid #9376E0",
                   },
                   boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: isSmallScreen ? "0.8rem" : "1rem",
                 }}
               >
                 Get CV
@@ -79,9 +110,15 @@ const MainPage: React.FC = () => {
             <img
               src="https://rent.cardinal.so/logos/atom-hero.jpg"
               alt="/"
-              width="500"
-              height="300"
-              style={{ borderRadius: "20px", marginTop: "20px" }}
+              width={isSmallScreen ? "80%" : "100%"}
+              height="auto"
+              style={{
+                borderRadius: "20px",
+                marginTop: isSmallScreen ? "20px" : 0,
+                marginBottom: isSmallScreen ? "20px" : 0,
+                maxWidth: "500px",
+                maxHeight: "300px",
+              }}
             />
           </Box>
         </Grid>
@@ -90,5 +127,12 @@ const MainPage: React.FC = () => {
   );
 };
 
-export default MainPage;
-  
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <MainPage />
+    </ThemeProvider>
+  );
+};
+
+export default App;

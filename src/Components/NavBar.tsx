@@ -1,5 +1,6 @@
 import React from "react";
-import WalletIcon from '@mui/icons-material/Wallet';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import WalletIcon from "@mui/icons-material/Wallet";
 import {
   AppBar,
   Toolbar,
@@ -7,17 +8,26 @@ import {
   Typography,
   Stack,
   Button,
-  Box
+  Box,
+  useMediaQuery,
 } from "@mui/material";
 
+const theme = createTheme();
+
 const NavBar = () => {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box sx={{ margin: "20px 40px" }}>
-      <AppBar position="static" className="header" sx={{
-        background: "rgba(245, 245, 245, 0.2)", // Lighter gray color with opacity
-        padding: "8px",
-        borderRadius: "10px"
-      }}>
+      <AppBar
+        position="static"
+        className="header"
+        sx={{
+          background: "rgba(245, 245, 245, 0.2)", // Lighter gray color with opacity
+          padding: "8px",
+          borderRadius: "10px",
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -30,11 +40,17 @@ const NavBar = () => {
               alt="Logo"
               width="24"
               height="24"
+              style={{ maxWidth: "100%" }}
             />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            
-          </Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              fontSize: isSmallScreen ? "1.2rem" : "inherit",
+            }}
+          ></Typography>
           <Stack direction="row" spacing={2}>
             <Button
               color="inherit"
@@ -48,6 +64,10 @@ const NavBar = () => {
                   outline: "2px solid #9376E0",
                 },
                 boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+                minWidth: 0, // Allow button to shrink to content width
+                whiteSpace: "nowrap", // Prevent line break within button
+                fontSize: isSmallScreen ? "0.8rem" : "inherit",
+                padding: "4px 8px", // Adjust the padding to make the button smaller
               }}
               startIcon={<WalletIcon />}
             >
@@ -60,4 +80,12 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <NavBar />
+    </ThemeProvider>
+  );
+};
+
+export default App;
