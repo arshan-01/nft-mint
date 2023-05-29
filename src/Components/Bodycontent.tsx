@@ -52,7 +52,7 @@ const MainPage: React.FC = () => {
               variant="body1"
               mb={2}
               sx={{
-                fontSize: isSmallScreen ? "0.9rem" : "1.2rem",
+                fontSize: isSmallScreen ? "1rem" : "1.2rem",
               }}
             >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -76,7 +76,8 @@ const MainPage: React.FC = () => {
                     outline: "2px solid #9376E0",
                   },
                   boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem",
+                  fontSize: isSmallScreen ? "0.9rem" : "1rem",
+                  marginBottom: "20px",
                 }}
               >
                 Hire me
@@ -97,7 +98,8 @@ const MainPage: React.FC = () => {
                     outline: "2px solid #9376E0",
                   },
                   boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem",
+                  fontSize: isSmallScreen ? "0.9rem" : "1rem",
+                  marginBottom: "20px",
                 }}
               >
                 Get CV
